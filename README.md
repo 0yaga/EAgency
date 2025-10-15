@@ -4,12 +4,6 @@
 
 This guide provides a complete deployment setup for your PHP application on Ubuntu 24.04 with Nginx, PHP-FPM, and MySQL.
 
-### Server Information
-- **IP Address**: 193.233.19.68
-- **OS**: Ubuntu 24.04
-- **Login**: root
-- **Password**: kT9bL1aL0gkH
-
 ### Prerequisites
 - Ubuntu 24.04 server with root access
 - Domain name (optional, for SSL setup)
