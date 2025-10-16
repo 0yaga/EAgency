@@ -17,7 +17,7 @@ Connect to your server and run the deployment script:
 
 ```bash
 # Connect to server
-ssh root@193.233.19.68
+ssh root@127.0.0.1
 
 # Download and run deployment script
 wget https://raw.githubusercontent.com/your-repo/deployment/deploy.sh
@@ -31,20 +31,20 @@ After the server setup is complete:
 
 ```bash
 # Copy your application files to the server
-scp -r /path/to/your/app/* root@193.233.19.68:/var/www/laravel/
+scp -r /path/to/your/app/* root@127.0.0.1:/var/www/laravel/
 
 # Or use rsync for better performance
-rsync -av --exclude='.git' --exclude='node_modules' /path/to/your/app/ root@193.233.19.68:/var/www/laravel/
+rsync -av --exclude='.git' --exclude='node_modules' /path/to/your/app/ root@127.0.0.1:/var/www/laravel/
 ```
 
 ### 3. Environment Configuration
 
 ```bash
 # Copy environment file
-scp deployment/env.production root@193.233.19.68:/var/www/laravel/.env
+scp deployment/env.production root@127.0.0.1:/var/www/laravel/.env
 
 # Edit the environment file
-ssh root@193.233.19.68
+ssh root@127.0.0.1
 nano /var/www/laravel/.env
 ```
 
@@ -58,10 +58,10 @@ Update the following variables in `.env`:
 
 ```bash
 # Import your database
-mysql -u platin_escort_user -pkT9bL1aL0gkH platin_escort_db < database.sql
+mysql -u yourdatabase_db_user -pPassword yourdatabase_db_db < database.sql
 
 # Or create tables manually if you have SQL files
-mysql -u platin_escort_user -pkT9bL1aL0gkH platin_escort_db < database.sql
+mysql -u yourdatabase_db_user -pPassword yourdatabase_db_db < database.sql
 ```
 
 ### 5. Final Configuration
@@ -96,9 +96,9 @@ mysql -u root -p
 ```
 
 ```sql
-CREATE DATABASE platin_escort_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-CREATE USER 'platin_escort_user'@'localhost' IDENTIFIED BY 'your_secure_password';
-GRANT ALL PRIVILEGES ON platin_escort_db.* TO 'platin_escort_user'@'localhost';
+CREATE DATABASE yourdatabase_db_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER 'yourdatabase_db_user'@'localhost' IDENTIFIED BY 'your_secure_password';
+GRANT ALL PRIVILEGES ON yourdatabase_db_db.* TO 'yourdatabase_db_user'@'localhost';
 FLUSH PRIVILEGES;
 EXIT;
 ```
@@ -191,7 +191,7 @@ Add this key to your `.env` file as `APP_KEY`.
 
 ```bash
 # Import your existing database
-mysql -u platin_escort_user -p platin_escort_db < database.sql
+mysql -u yourdatabase_db_user -p yourdatabase_db_db < database.sql
 ```
 
 ### 3. File Permissions
@@ -239,7 +239,7 @@ BACKUP_DIR="/root/backups"
 mkdir -p $BACKUP_DIR
 
 # Database backup
-mysqldump -u platin_escort_user -p platin_escort_db > $BACKUP_DIR/database_$DATE.sql
+mysqldump -u yourdatabase_db_user -p yourdatabase_db_db > $BACKUP_DIR/database_$DATE.sql
 
 # Application backup
 tar -czf $BACKUP_DIR/application_$DATE.tar.gz /var/www/laravel
